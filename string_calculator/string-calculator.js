@@ -1,6 +1,8 @@
 function eval(expression){
     if(!expression) return 0;
-    return Number(expression);
+    let nums = expression.split(',').map(x => Number(x));
+    if(nums.length < 2) return nums[0];
+    return nums[0] + nums[1];
 }
 
 module.exports = {
