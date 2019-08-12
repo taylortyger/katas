@@ -8,5 +8,10 @@ describe('String Calculator Functions', () => {
             let res = calc.eval('');
             res.should.be.equal(0);
         });
+
+        it('should return the value of a single number', () => {
+            let res = calc.eval('13');
+            res.should.be.equal(13);
+        });
     });
 });
