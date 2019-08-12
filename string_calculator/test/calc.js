@@ -58,6 +58,20 @@ describe('String Calculator Functions', () => {
             }).to.throw('Negative numbers are not allowed.');
         });
 
+        it('should ignore numbers >1000', () => {
+            let res = calc.eval('15\n45\n1001');
+            res.should.be.equal(60);
+        });
+
+        it('should ignore numbers >1000', () => {
+            let res = calc.eval('15\n4500\n100');
+            res.should.be.equal(115);
+        });
+        
+        it('should ignore numbers >1000', () => {
+            let res = calc.eval('1500\n450\n100');
+            res.should.be.equal(550);
+        });
         
     });
 });
