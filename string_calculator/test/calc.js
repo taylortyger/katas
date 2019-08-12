@@ -2,11 +2,11 @@ let chai = require('chai');
 let should = chai.should();
 let calc = require('../string-calculator');
 
-describe('Calculator Functions', () => {
-    describe('sum()', () => {
-        it('should return the sum of two numbers', () => {
-            let res = calc.sum(5,3);
-            res.should.be.equal(8);
+describe('String Calculator Functions', () => {
+    describe('eval()', () => {
+        it('should return 0 if string is empty', () => {
+            let res = calc.eval('');
+            res.should.be.equal(0);
         });
     });
 });

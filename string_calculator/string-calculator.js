@@ -1,7 +1,7 @@
-function sum(a, b){
-    return a + b;
+function eval(expression){
+    if(!expression) return 0;
 }
 
 module.exports = {
-    sum: sum
+    eval: eval
 }
