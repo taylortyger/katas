@@ -18,5 +18,10 @@ describe('String Calculator Functions', () => {
             let res = calc.eval('13,15');
             res.should.be.equal(28);
         });
+
+        it('should return the sum of two new line delimited numbers', () => {
+            let res = calc.eval('13\n15');
+            res.should.be.equal(28);
+        });
     });
 });

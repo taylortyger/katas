@@ -1,6 +1,6 @@
 function eval(expression){
     if(!expression) return 0;
-    let nums = expression.split(',').map(x => Number(x));
+    let nums = expression.split(/[\n,]+/).map(x => Number(x));
     if(nums.length < 2) return nums[0];
     return nums[0] + nums[1];
 }
