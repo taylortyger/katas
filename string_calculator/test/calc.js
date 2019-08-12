@@ -1,5 +1,6 @@
 let chai = require('chai');
 let should = chai.should();
+let expect = chai.expect;
 let calc = require('../string-calculator');
 
 describe('String Calculator Functions', () => {
@@ -38,5 +39,25 @@ describe('String Calculator Functions', () => {
             let res = calc.eval('13\n15,100');
             res.should.be.equal(128);
         });
+
+        it('should throw an exception for negative numbers', () => {
+            expect(() => { 
+                calc.eval('13\n-15,100');
+            }).to.throw('Negative numbers are not allowed.');
+        });
+
+        it('should throw an exception for negative numbers', () => {
+            expect(() => { 
+                calc.eval('13\n15,-100');
+            }).to.throw('Negative numbers are not allowed.');
+        });
+
+        it('should throw an exception for negative numbers', () => {
+            expect(() => { 
+                calc.eval('-13\n15,100');
+            }).to.throw('Negative numbers are not allowed.');
+        });
+
+        
     });
 });
