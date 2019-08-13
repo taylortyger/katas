@@ -1,3 +1,6 @@
+//-----------------------------------------------------------
+// Evaluates the expression string, returns the result.
+//-----------------------------------------------------------
 function eval(expression){
     if(!expression) return 0;
     let delimiters = getCustomDelimiters(expression);
@@ -5,6 +8,18 @@ function eval(expression){
     return nums.reduce((total, item) => total + item);
 }
 
+//------------------------------------------------------------
+// Parses the expression string to extract an array of custom
+// delimiters defined on the first line of the string.
+//
+//  Expected formats:
+//      Single one-char delimiter
+//          //#\n
+//      Single multi-char delimiter
+//          //[###]\n
+//      Multiple mult-char or single-char delimiters 
+//          //[#][###]...[DELIMITER-N]\n
+//------------------------------------------------------------
 function getCustomDelimiters(expression) {
     let delimiters = [];
     if(expression.startsWith('//')) {
@@ -21,7 +36,11 @@ function getCustomDelimiters(expression) {
 
 //------------------------------------------------------------
 // Parses the expression string to generate a list of numbers
-// contained in the expression.  
+// contained in the expression delimited by: any delimiters in 
+// the delimiterArray and the default delimiters ',' and '\n'.
+//
+// Instances of undefined, null, or other falsy values will
+// be 0. 
 //------------------------------------------------------------
 function getNums(expression, delimiterArray) {
     let delimiters = ['\\n',','].concat(delimiterArray).join('');
