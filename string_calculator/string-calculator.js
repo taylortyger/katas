@@ -1,13 +1,27 @@
 function eval(expression){
     if(!expression) return 0;
-    let delim = '';
-    if(expression.startsWith('//')) {
-        delim = expression[2];
-    }
+    let delim = getCustomDelimiter(expression);
     let nums = getNums(expression, delim);
     return nums.reduce((total, item) => total + item);
 }
 
+function getCustomDelimiter(expression) {
+    let delim = '';
+    if(expression.startsWith('//')) {
+        let customDelimString = expression.substring(0, expression.indexOf('\n'));
+        if(customDelimString[2] === '['){
+            delim = customDelimString.split(/[\[\]]/)[1];
+        } else {
+            delim = customDelimString[2];
+        }
+    }
+    return delim;
+}
+
+//------------------------------------------------------------
+// Parses the expression string to generate a list of numbers
+// contained in the expression.  
+//------------------------------------------------------------
 function getNums(expression, delim) {
     let delimiters = ['\\n',','].concat(delim).join('');
     let delimRegex = new RegExp(`[${delimiters}]+`);

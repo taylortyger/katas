@@ -87,6 +87,20 @@ describe('String Calculator Functions', () => {
             let res = calc.eval('//+\n5+6+7');
             res.should.be.equal(18);
         });
+
+        it('should allow multiple char delimiter to be defined on first line contained in brackets []', () => {
+            let res = calc.eval('//[+++]\n5+++6+++7');
+            res.should.be.equal(18);
+        });
+
+        it('should allow multiple char delimiter to be defined on first line contained in brackets []', () => {
+            let res = calc.eval('//[plus]\n5plus6plus7');
+            res.should.be.equal(18);
+        });
         
+        it('should allow multiple char delimiter to be defined on first line contained in brackets []', () => {
+            let res = calc.eval('//[add+]\n5add+6add+7');
+            res.should.be.equal(18);
+        });
     });
 });
