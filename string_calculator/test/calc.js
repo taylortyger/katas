@@ -67,10 +67,25 @@ describe('String Calculator Functions', () => {
             let res = calc.eval('15\n4500\n100');
             res.should.be.equal(115);
         });
-        
+
         it('should ignore numbers >1000', () => {
             let res = calc.eval('1500\n450\n100');
             res.should.be.equal(550);
+        });
+
+        it('should allow single char delimiter to be defined on first line', () => {
+            let res = calc.eval('//#\n1500#450\n100');
+            res.should.be.equal(550);
+        });
+        
+        it('should allow single char delimiter to be defined on first line', () => {
+            let res = calc.eval('//;\n5;6;7');
+            res.should.be.equal(18);
+        });
+
+        it('should allow single char delimiter to be defined on first line', () => {
+            let res = calc.eval('//+\n5+6+7');
+            res.should.be.equal(18);
         });
         
     });
