@@ -1,29 +1,30 @@
 function eval(expression){
     if(!expression) return 0;
-    let delim = getCustomDelimiter(expression);
-    let nums = getNums(expression, delim);
+    let delimiters = getCustomDelimiters(expression);
+    let nums = getNums(expression, delimiters);
     return nums.reduce((total, item) => total + item);
 }
 
-function getCustomDelimiter(expression) {
-    let delim = '';
+function getCustomDelimiters(expression) {
+    let delimiters = [];
     if(expression.startsWith('//')) {
-        let customDelimString = expression.substring(0, expression.indexOf('\n'));
-        if(customDelimString[2] === '['){
-            delim = customDelimString.split(/[\[\]]/)[1];
+        let customDelimitersString = expression.substring(0, expression.indexOf('\n'));
+        if(customDelimitersString[2] === '['){
+            delimiters = customDelimitersString.split(/[\[\]]/);
+            delimiters.shift(); //remove '//' from delims
         } else {
-            delim = customDelimString[2];
+            delimiters.push(customDelimitersString[2]);
         }
     }
-    return delim;
+    return delimiters;
 }
 
 //------------------------------------------------------------
 // Parses the expression string to generate a list of numbers
 // contained in the expression.  
 //------------------------------------------------------------
-function getNums(expression, delim) {
-    let delimiters = ['\\n',','].concat(delim).join('');
+function getNums(expression, delimiterArray) {
+    let delimiters = ['\\n',','].concat(delimiterArray).join('');
     let delimRegex = new RegExp(`[${delimiters}]+`);
     let nums = expression.split(delimRegex).map(x => {
         let num = Number(x);
