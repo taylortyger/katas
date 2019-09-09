@@ -3,8 +3,8 @@ const LCDNumber = require('./digits/LCDNumber').LCDNumber;
 
 const [,, ...args] = process.argv;
 
-let number = args[0];
-
-if(number) {
-    new LCDNumber(number).print();
+if(args) {
+    for(number of args) {
+        new LCDNumber(number).print();
+    }
 }
