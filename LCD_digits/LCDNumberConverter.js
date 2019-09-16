@@ -4,6 +4,7 @@ const LCDNumberConverter = {
     
     convertToLCDString(number) {
         if(typeof(number) !== 'number') number = 0;
+        number = Math.trunc(number);
         let digits = number.toString().split('').map(digit => parseInt(digit));
         let lines = ['','',''];
         for(let i = 0; i < digits.length; i++) {

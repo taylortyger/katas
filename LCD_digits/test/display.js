@@ -87,6 +87,26 @@ describe('LCDConverter', () => {
             expect(LCDNumberConverter.convertToLCDString(1634257890)).to.equal(multiDigitLCD);
 
         });
+
+        it('floating point numbers are truncated', () => {
+            let multiDigitLCD =  " _   _   _     " + "\n" +
+                                 "|_| | | | |   |" + "\n" +
+                                 "|_| |_| |_|   |";
+            expect(LCDNumberConverter.convertToLCDString(8001.12315)).to.equal(multiDigitLCD);
+
+
+            multiDigitLCD =  " _   _   _       _ " + "\n" +
+                             "|_| |_   _| |_|  _|" + "\n" +
+                             "  | |_|  _|   | |_ ";
+            expect(LCDNumberConverter.convertToLCDString(96342.34563)).to.equal(multiDigitLCD);
+
+            //includes all digits [0-9]
+            multiDigitLCD =  "     _   _       _   _   _   _   _   _ " + "\n" +
+                             "  | |_   _| |_|  _| |_    | |_| |_| | |" + "\n" +
+                             "  | |_|  _|   | |_   _|   | |_|   | |_|";
+            expect(LCDNumberConverter.convertToLCDString(1634257890.92349)).to.equal(multiDigitLCD);
+
+        });
         
     });
 });
