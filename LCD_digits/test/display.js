@@ -62,6 +62,31 @@ describe('LCDConverter', () => {
             expect(LCDNumberConverter.convertToLCDString(null)).to.equal(zeroLCD);
             expect(LCDNumberConverter.convertToLCDString([0,1,2,3])).to.equal(zeroLCD);
             expect(LCDNumberConverter.convertToLCDString(true)).to.equal(zeroLCD);
+            expect(LCDNumberConverter.convertToLCDString(false)).to.equal(zeroLCD);
+            expect(LCDNumberConverter.convertToLCDString(() => {})).to.equal(zeroLCD);
+            expect(LCDNumberConverter.convertToLCDString('string type')).to.equal(zeroLCD);
+            expect(LCDNumberConverter.convertToLCDString(undefined)).to.equal(zeroLCD);
         });
+
+        it('should support Multi-Digit numbers', () => {
+            let multiDigitLCD =  " _   _   _     " + "\n" +
+                                 "|_| | | | |   |" + "\n" +
+                                 "|_| |_| |_|   |";
+            expect(LCDNumberConverter.convertToLCDString(8001)).to.equal(multiDigitLCD);
+
+
+            multiDigitLCD =  " _   _   _       _ " + "\n" +
+                             "|_| |_   _| |_|  _|" + "\n" +
+                             "  | |_|  _|   | |_ ";
+            expect(LCDNumberConverter.convertToLCDString(96342)).to.equal(multiDigitLCD);
+
+            //includes all digits [0-9]
+            multiDigitLCD =  "     _   _       _   _   _   _   _   _ " + "\n" +
+                             "  | |_   _| |_|  _| |_    | |_| |_| | |" + "\n" +
+                             "  | |_|  _|   | |_   _|   | |_|   | |_|";
+            expect(LCDNumberConverter.convertToLCDString(1634257890)).to.equal(multiDigitLCD);
+
+        });
+        
     });
 });
